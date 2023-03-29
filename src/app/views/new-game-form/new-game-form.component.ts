@@ -1,5 +1,8 @@
-import { Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import StatusBar from '../../models/status-bar.model';
+import { setTitle } from '../../tools/redux/actions/status-bar.actions';
 
 @Component({
   selector: 'app-new-game-form',
@@ -9,8 +12,11 @@ import { Router } from '@angular/router';
 export class NewGameFormComponent {
 
   constructor(
-    private router: Router
-  ){};
+    private router: Router,
+    private store: Store<{statusbar: StatusBar}>
+  ){
+    this.store.dispatch(setTitle({statusbar: {title: 'New game'}}));  
+  };
 
   public goToHome(): void {
     this.router.navigate(['home']);

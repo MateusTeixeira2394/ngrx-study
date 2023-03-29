@@ -9,7 +9,8 @@ import { HomeComponent } from './views/home/home.component';
 import { StatusBarComponent } from './components/status-bar/status-bar.component';
 import { NewGameFormComponent } from './views/new-game-form/new-game-form.component';
 import { ButtonComponent } from './components/button/button.component';
-
+import { StoreModule } from '@ngrx/store';
+import { statusBarReducer } from './tools/redux/reducers/status-bar.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { ButtonComponent } from './components/button/button.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({statusbar: statusBarReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]
