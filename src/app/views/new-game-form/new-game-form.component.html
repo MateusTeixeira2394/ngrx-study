@@ -1,3 +1,46 @@
-<p>new-game-form works!</p>
+<form class="new-game-form" id="new-game-form" #form="ngForm" (ngSubmit)="start(form)">
+
+<div class="field-container">
+    <label for="name" label="name-label">Name</label>
+    <input
+    type="text"
+    class="input-field"
+    id="input-name" 
+    ngModel
+    #name="ngModel"
+    required
+    minlength="3"
+    name="name"
+    placeholder="Type your name"
+    />
+</div>
+
+<div class="name-errors-texts" *ngIf="name?.touched || name?.dirty">
+    <span class="erro-texto" *ngIf="name?.errors?.
+    ['required']">Required Field.</span>
+    <span class="erro-texto" *ngIf="name?.errors?.
+    ['minlength']">Your name must have more than 3 characters at least</span>
+  </div>
+
+<div class="field-container">
+    <label for="difficulty" label="difficulty-label">Difficulty</label>
+    <select 
+    name="difficulty" 
+    id="difficulty-select"
+    ngModel
+    #difficulty
+    required
+    class="input-field"
+    >
+    <option value="">Easy</option>
+    <option value="normal">Normal</option>
+    <option value="hard">Hard</option>
+    </select>
+</div>
+
+<app-button [text]="'Start'" (click)="start(form)" ></app-button>
 
 <app-button [text]="'Back'" (click)="goToHome()" ></app-button>
+
+</form>
+

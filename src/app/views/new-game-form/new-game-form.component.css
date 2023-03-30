@@ -1,0 +1,32 @@
+.new-game-form{
+    padding: 30px 20px;
+}
+
+.field-container{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+}
+
+.field-container > label {
+    color: #686868;
+    font-size: 14px;
+}
+
+.input-field{
+    font-size: 14px;
+    padding: 10px 5px;
+}
+
+
+
+.ng-invalid.ng-touched:not(form),
+.ng-invalid.ng-touched:focus
+{
+    border-color: red;
+    color: red;
+  }
+
+  .erro-texto{
+    color: red;
+  }
