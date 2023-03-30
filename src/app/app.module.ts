@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms'
 // Redux imports
 import { statusBarReducer } from './tools/redux/reducers/status-bar.reducer';
 import { modalReducer } from './tools/redux/reducers/modal.reducer';
+import { gameReducer } from './tools/redux/reducers/game.reducer';
 
 // Components imports
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { StatusBarComponent } from './components/status-bar/status-bar.component
 import { NewGameFormComponent } from './views/new-game-form/new-game-form.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { BoardGameComponent } from './views/board-game/board-game.component';
 
 
 
@@ -30,12 +32,17 @@ import { ModalComponent } from './components/modal/modal.component';
     StatusBarComponent,
     NewGameFormComponent,
     ButtonComponent,
-    ModalComponent
+    ModalComponent,
+    BoardGameComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ statusbar: statusBarReducer, modal: modalReducer }),
+    StoreModule.forRoot({
+      statusbar: statusBarReducer,
+      modal: modalReducer,
+      game: gameReducer
+    }),
     FormsModule
   ],
   providers: [],

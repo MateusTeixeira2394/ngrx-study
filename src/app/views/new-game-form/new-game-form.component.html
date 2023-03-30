@@ -1,4 +1,4 @@
-<form class="new-game-form" id="new-game-form" #form="ngForm" (ngSubmit)="start(form)">
+<form class="new-game-form" id="new-game-form" #form="ngForm" (ngSubmit)="submitForm(form)">
 
 <div class="field-container">
     <label for="name" label="name-label">Name*</label>
@@ -44,7 +44,7 @@
     ['required']">Required Field.</span>
   </div>
 
-<app-button [text]="'Start'" (click)="start(form)" ></app-button>
+<app-button [text]="'Start'" (click)="submitForm(form)" ></app-button>
 
 <app-button [text]="'Back'" (click)="goToHome()" ></app-button>
 

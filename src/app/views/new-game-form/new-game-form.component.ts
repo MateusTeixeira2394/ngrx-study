@@ -7,6 +7,10 @@ import Modal from 'src/app/models/modal.model';
 import StatusBar from '../../models/status-bar.model';
 import { setTitle } from '../../tools/redux/actions/status-bar.actions';
 import { setModal, closeModal } from '../../tools/redux/actions/modal.actions'
+import Game from 'src/app/models/game.model';
+import difficultyStrategy from 'src/app/tools/strategies/difficulty.strategy';
+import Difficulty from '../../models/difficulty.model';
+import { setGame } from 'src/app/tools/redux/actions/game.actions';
 
 @Component({
   selector: 'app-new-game-form',
@@ -14,6 +18,8 @@ import { setModal, closeModal } from '../../tools/redux/actions/modal.actions'
   styleUrls: ['./new-game-form.component.css']
 })
 export class NewGameFormComponent {
+
+  private form!: NgForm;
 
   private readonly modal: Modal = {
     opened: true,
@@ -23,7 +29,7 @@ export class NewGameFormComponent {
     buttons: [
       {
         text: 'Start now',
-        action: () => console.log('started the game')
+        action: () => this.startGame()
       },
       {
         text: 'Cancel',
@@ -34,7 +40,7 @@ export class NewGameFormComponent {
 
   constructor(
     private router: Router,
-    private store: Store<{ statusbar: StatusBar, modal: Modal }>,
+    private store: Store<{ statusbar: StatusBar, modal: Modal, game: Game }>,
   ) {
     this.store.dispatch(setTitle({ statusbar: { title: 'New game' } }));
   };
@@ -43,9 +49,10 @@ export class NewGameFormComponent {
     this.router.navigate(['home']);
   }
 
-  public start(form: NgForm): void {
+  public submitForm(form: NgForm): void {
 
     if (form.valid) {
+      this.form = form;
       this.store.dispatch(setModal({ modal: this.modal }));
     } else {
 
@@ -54,6 +61,51 @@ export class NewGameFormComponent {
       };
 
     };
+
+  };
+
+  private startGame(): void {
+
+    var game: Game = this.getGameInfoFromDiff(this.getGameFromForm());
+    
+    this.store.dispatch(setGame({game})); 
+
+    this.store.dispatch(closeModal());
+
+    this.router.navigate(['board-game']);
+
+  };
+
+  private getGameFromForm(): Game {
+
+    const { name, difficulty } = this.form.controls;
+
+    return {
+      player: name?.value || '',
+      difficulty: difficulty?.value || '',
+      time: 0
+    }
+
+  };
+
+  private getGameInfoFromDiff(game: Game): Game {
+
+    const difficulty: Difficulty | undefined = difficultyStrategy(game.difficulty);
+    
+    if (difficulty) {
+
+      const { grounds, mines, rowsNCols } = difficulty;
+
+      return { 
+        ...game,
+        grounds,
+        mines,
+        rowsNCols
+      }
+
+    };
+
+    return game;
 
   };
 

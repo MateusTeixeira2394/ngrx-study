@@ -1,0 +1,8 @@
+.board-game-container{
+    margin-top: 70px;
+}
+
+.info-container{
+    display: flex;
+    justify-content: space-between;
+}

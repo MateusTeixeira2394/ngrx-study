@@ -12,7 +12,7 @@ import StatusBar from '../../models/status-bar.model';
 export class StatusBarComponent implements OnDestroy {
 
   public title: string = '';
-  public subscription!: Subscription;
+  private subscription!: Subscription;
 
   constructor(
     private store: Store<{ statusbar: StatusBar }>
