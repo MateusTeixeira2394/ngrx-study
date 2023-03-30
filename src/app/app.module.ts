@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
-import {FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms'
 
 // Redux imports
 import { statusBarReducer } from './tools/redux/reducers/status-bar.reducer';
+import { modalReducer } from './tools/redux/reducers/modal.reducer';
 
 // Components imports
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { HomeComponent } from './views/home/home.component';
 import { StatusBarComponent } from './components/status-bar/status-bar.component';
 import { NewGameFormComponent } from './views/new-game-form/new-game-form.component';
 import { ButtonComponent } from './components/button/button.component';
+import { ModalComponent } from './components/modal/modal.component';
+
 
 
 @NgModule({
@@ -26,12 +29,13 @@ import { ButtonComponent } from './components/button/button.component';
     HomeComponent,
     StatusBarComponent,
     NewGameFormComponent,
-    ButtonComponent
+    ButtonComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({statusbar: statusBarReducer}),
+    StoreModule.forRoot({ statusbar: statusBarReducer, modal: modalReducer }),
     FormsModule
   ],
   providers: [],

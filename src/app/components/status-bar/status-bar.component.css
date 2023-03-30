@@ -1,7 +1,12 @@
 .status-bar-container{
+    position: fixed;
     display: flex;
     justify-content: center;
     background-color: #166737;
+    width: 100%;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 2px 2px 2px grey; 
 }
 
 .status-bar-title{
