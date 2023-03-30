@@ -8,5 +8,5 @@ export default interface Modal{
 
 interface Button {
     text: string;
-    action: <T>(...arg: any[]) => T
+    action: () => void
 }
