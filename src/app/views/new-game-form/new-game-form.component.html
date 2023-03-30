@@ -1,7 +1,7 @@
 <form class="new-game-form" id="new-game-form" #form="ngForm" (ngSubmit)="start(form)">
 
 <div class="field-container">
-    <label for="name" label="name-label">Name</label>
+    <label for="name" label="name-label">Name*</label>
     <input
     type="text"
     class="input-field"
@@ -23,7 +23,7 @@
   </div>
 
 <div class="field-container">
-    <label for="difficulty" label="difficulty-label">Difficulty</label>
+    <label for="difficulty" label="difficulty-label">Difficulty*</label>
     <select 
     name="difficulty" 
     id="difficulty-select"
@@ -32,16 +32,20 @@
     required
     class="input-field"
     >
-    <option value="">Easy</option>
+    <option value="" selected disabled>Choose the game's difficulty</option>
+    <option value="easy">Easy</option>
     <option value="normal">Normal</option>
     <option value="hard">Hard</option>
     </select>
 </div>
+
+<div class="name-errors-texts" *ngIf="form.touched">
+    <span class="erro-texto" *ngIf="form.controls['difficulty']?.errors?.
+    ['required']">Required Field.</span>
+  </div>
 
 <app-button [text]="'Start'" (click)="start(form)" ></app-button>
 
 <app-button [text]="'Back'" (click)="goToHome()" ></app-button>
 
 </form>
-
-<app-modal></app-modal>

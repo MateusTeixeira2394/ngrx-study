@@ -5,6 +5,6 @@ interface State {
     modal: Modal;
 };
 
-export const open = createAction('[Modal] open');
-export const close = createAction('[Modal] close');
+export const openModal = createAction('[Modal] openModal');
+export const closeModal = createAction('[Modal] closeModal');
 export const setModal = createAction('[Modal] setModal', props<State>());

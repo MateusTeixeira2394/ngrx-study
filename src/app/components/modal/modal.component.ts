@@ -1,20 +1,35 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import Modal from 'src/app/models/modal.model';
+import {closeModal} from '../../tools/redux/actions/modal.actions'
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent {
+export class ModalComponent implements OnDestroy {
 
   public modal: Modal = {
     text: '',
     opened: false
   }
 
-  public closeModal() : void {
-    this.modal.opened = false;
+  public subscription!: Subscription;
+
+  constructor(
+    private store: Store<{ modal: Modal }>
+  ){
+    this.subscription = store.select('modal').subscribe(result => this.modal = result);
   }
+
+  public closeModal() : void {
+    this.store.dispatch(closeModal());
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  };
 
 }

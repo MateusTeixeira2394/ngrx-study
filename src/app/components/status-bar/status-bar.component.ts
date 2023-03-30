@@ -22,7 +22,6 @@ export class StatusBarComponent implements OnDestroy {
   
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-;
+  };
 
 }
