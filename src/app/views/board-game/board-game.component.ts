@@ -20,12 +20,12 @@ export class BoardGameComponent implements OnDestroy {
   public rows: Ground[][] = [];
 
   public game: Game = {
-    player: 'Mateus',
-    difficulty: 'easy',
-    grounds: 25,
-    mines: 5,
+    player: '',
+    difficulty: '',
+    grounds: 0,
+    mines: 0,
     time: 0,
-    rowsNCols: 5
+    rowsNCols: 0
   }
 
   constructor(
@@ -37,37 +37,38 @@ export class BoardGameComponent implements OnDestroy {
 
     this.subscription = this.store.select('game').subscribe(game => {
 
-      const { mines, rowsNCols } = this.game;
+      const { mines, rowsNCols } = game;
 
       if (mines && rowsNCols) {
 
         this.grounds = this.getGrounds(rowsNCols, mines);
 
-        console.log('grounds', this.grounds);
-
         this.rows = this.getRows(this.grounds, rowsNCols);
 
-        console.log('rows', this.rows);
-
-        this.game = game;
+        this.game = {...game};
 
         this.setMinesArounds();
 
-        console.log('rows with mines arounds', this.rows);
+        console.log('board', this.rows);
 
-      }
+      } else {
+        this.router.navigate(['home']);
+      };
 
-      // if (!game?.player) {
-      //   this.router.navigate(['home']);
-      // };
 
     });
 
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  };
+  public discover(ground: Ground): void {
+
+    ground.known = true;
+
+    if(!ground.isMine){
+      this.game.grounds = (this.game.grounds || 0) - 1;
+    }
+
+  }
 
   private getMinesPositions(groundsQuantity: number, minesQuantity: number): number[] {
 
@@ -96,9 +97,9 @@ export class BoardGameComponent implements OnDestroy {
   private getGrounds(rowNcols: number, minesQuantity: number): Ground[] {
 
     const groundsQuantity: number = Math.pow(rowNcols, 2);
-    console.log('groundsQuantity', groundsQuantity);
+
     let minesPositions: number[] = this.getMinesPositionSorted(groundsQuantity, minesQuantity);
-    console.log('minesPositions', minesPositions);
+
     let grounds: Ground[] = [];
 
     for (let i = 0; i < groundsQuantity; i++) {
@@ -168,12 +169,16 @@ export class BoardGameComponent implements OnDestroy {
 
     neighbors.forEach(neighbor => {
 
-      if(neighbor?.isMine) minesAround++;
+      if (neighbor?.isMine) minesAround++;
 
     });
 
     return minesAround;
 
+  };
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   };
 
 };

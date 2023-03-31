@@ -1,6 +1,6 @@
 .board-row{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .board-item{

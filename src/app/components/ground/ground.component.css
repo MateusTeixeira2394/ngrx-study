@@ -22,7 +22,34 @@
 }
 
 .mineAround{
-    color: blue;
+    color: #c00202;
     font-weight: bold;
     font-size: 18px;
+}
+
+.mineAround.one{
+    color: blue;
+}
+
+.mineAround.two{
+    color: #006300;
+}
+
+.mineAround.three{
+    color: #bd710d;
+}
+
+.is-mine.known{
+    background-color: #ff6f6f;
+    background-image: url("../../../assets/images/mine-exploded.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.safezone.known{
+    background-image: url("../../../assets/images/caban.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

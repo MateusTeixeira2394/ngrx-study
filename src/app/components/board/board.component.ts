@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import Ground from 'src/app/models/ground.model';
 
 @Component({
@@ -6,58 +6,16 @@ import Ground from 'src/app/models/ground.model';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit{
+export class BoardComponent {
 
   @Input()
-  public grounds: Ground[] = [
-    {
-      known: false,
-      isMine: false,
-      minesAround: 0
-    },
-    {
-      known: false,
-      isMine: false,
-      minesAround: 0
-    },
-    {
-      known: false,
-      isMine: false,
-      minesAround: 0
-    },
-    {
-      known: false,
-      isMine: false,
-      minesAround: 0
-    },
-    {
-      known: false,
-      isMine: false,
-      minesAround: 0
-    }
-  ];
-
-  @Input()
-  public size: number = 10;
-
   public rows: Ground[][] = [];
 
-  ngOnInit(): void {
-    
-    this.rows = this.getRows(this.grounds);
-    console.log(this.rows)
+  @Output()
+  public discoverEvent: EventEmitter<Ground> = new EventEmitter();
+
+  public discover(ground: Ground): void {
+    this.discoverEvent.emit(ground);
   };
 
-  private getRows(grounds: Ground[], size: number=10): Ground[][] {
-
-    let rows: Ground[][] = [];
-
-    for (let i = 0; i < grounds.length; i=+size) {
-        rows.push(grounds.slice(i,i+size));
-    }
-
-    return rows;
-
-  };
-
-}
+};

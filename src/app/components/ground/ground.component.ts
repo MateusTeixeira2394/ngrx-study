@@ -15,10 +15,36 @@ export class GroundComponent {
     minesAround: 0
   }
 
-  public getClassStyle(): string {
+  public getClassStyle(): string[] {
 
-    return this.ground.known? 'known' : 'unknown';
+    let classes: string[] = [];
+
+    const { known, isMine, minesAround } = this.ground;
+
+    classes.push(known ? 'known' : 'unknown');
+
+    if (isMine) classes.push('is-mine');
+
+    if (minesAround === 0 && !isMine) classes.push('safezone');
+
+    return classes;
 
   };
+
+  public getClassOfNumbers(): string[] {
+
+    const { minesAround } = this.ground;
+
+    let classes: string[] = ["mineAround"];
+
+    const map: Map<number, string> = new Map([[1, 'one'], [2, 'two'], [3, 'three']]);
+
+    const classOfNumbers: string | undefined = map.get(minesAround);
+
+    if (classOfNumbers) classes.push(classOfNumbers);
+
+    return classes;
+
+  }
 
 }
