@@ -1,15 +1,33 @@
 <div class="board-game-container">
     <div class="info">
         <div class="info-container">
-            <p class="player">Player's name: <span>{{game.player}}</span></p>
-            <p class="difficulty"><span>Difficulty: {{game.difficulty}}</span></p>
+            <div class="info-item">
+                <p>Player's name:</p>    
+                <p>{{game.player}}</p>
+            </div>
+            <div class="info-item">
+                <p>Difficulty:</p>
+                <p>{{game.difficulty}}</p>
+            </div>
         </div>
         <div class="info-container">
-            <p class="grounds"><span>Empty grounds: {{game.grounds}}</span></p>
-            <p class="mines"><span>Total mines: {{game.mines}}</span></p>
+            <div class="info-item">
+                <p>Empty grounds:</p>
+                <p>{{game.grounds}}</p>
+            </div>
+            <div class="info-item">
+                <p>Total mines:</p>
+                <p>{{game.mines}}</p>
+            </div>
         </div>
         <div class="info-container">
-            <p class="time"><span>Time: {{game.time}}</span></p>
+            <div class="info-item info-time">
+                <p>Time:</p>
+                <p>{{game.time}}</p>
+            </div>
         </div>
+    </div>
+    <div class="ground">
+        
     </div>
 </div>

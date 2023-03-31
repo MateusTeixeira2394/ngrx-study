@@ -4,5 +4,28 @@
 
 .info-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
+
+.info-item{
+    box-shadow: 3px 3px 5px grey;
+    padding: 5px 10px;
+    width: 100%;
+    margin: 10px 20px;
+    border: solid 1px grey;
+}
+
+.info-item>:first-child{
+    font-size: 14px;
+    color: #676767
+}
+
+.info-item>:nth-child(2){
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.info-time{
+    text-align: center;
+}
+

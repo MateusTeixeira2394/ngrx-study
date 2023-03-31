@@ -13,27 +13,27 @@ export class BoardComponent implements OnInit{
     {
       known: false,
       isMine: false,
-      mineAround: 0
+      minesAround: 0
     },
     {
       known: false,
       isMine: false,
-      mineAround: 0
+      minesAround: 0
     },
     {
       known: false,
       isMine: false,
-      mineAround: 0
+      minesAround: 0
     },
     {
       known: false,
       isMine: false,
-      mineAround: 0
+      minesAround: 0
     },
     {
       known: false,
       isMine: false,
-      mineAround: 0
+      minesAround: 0
     }
   ];
 

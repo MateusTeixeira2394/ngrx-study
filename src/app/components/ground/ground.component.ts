@@ -12,7 +12,7 @@ export class GroundComponent {
   public ground: Ground = {
     known: false,
     isMine: false,
-    mineAround: 0
+    minesAround: 0
   }
 
   public getClassStyle(): string {
