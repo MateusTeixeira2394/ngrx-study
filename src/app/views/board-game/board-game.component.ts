@@ -54,7 +54,7 @@ export class BoardGameComponent implements OnDestroy {
         console.log('board', this.rows);
 
       } else {
-        this.router.navigate(['home']);
+        // this.router.navigate(['home']);
       };
 
 

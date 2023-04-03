@@ -36,3 +36,12 @@
     height: 50vh;
 }
 
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.buttons > app-button {
+    width: 100%;
+}

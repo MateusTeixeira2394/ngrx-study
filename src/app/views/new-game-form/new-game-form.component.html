@@ -44,8 +44,8 @@
     ['required']">Required Field.</span>
   </div>
 
-<app-button [text]="'Start'" (click)="submitForm(form)" ></app-button>
+<app-button [button]="{text: 'Start'}" (click)="submitForm(form)" ></app-button>
 
-<app-button [text]="'Back'" (click)="goToHome()" ></app-button>
+<app-button [button]="{text: 'Back'}" (click)="goToHome()" ></app-button>
 
 </form>

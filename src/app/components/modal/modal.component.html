@@ -19,7 +19,7 @@
         </div>
         <div class="modal-buttons">
             <div *ngFor="let button of modal.buttons">
-                <app-button (clickEvent)="button.action()" [text]="button.text"></app-button>
+                <app-button (clickEvent)="button.action()" [button]="{text: button.text}"></app-button>
             </div>
         </div>
     </div>

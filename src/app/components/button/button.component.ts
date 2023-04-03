@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import Button from 'src/app/models/button.model';
 
 @Component({
   selector: 'app-button',
@@ -8,7 +9,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
 
   @Input()
-  public text: string = '';
+  public button: Button = {
+    text: ''
+  };
 
   @Output()
   public clickEvent: EventEmitter<any> = new EventEmitter<any>();
