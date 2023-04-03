@@ -4,6 +4,7 @@ export default interface Modal{
     text: string;
     opened: boolean;
     buttons?: Button[];
+    actionAfterModalClose?: () => void
 }
 
 interface Button {

@@ -5,7 +5,9 @@ import { Subscription } from 'rxjs';
 import Game from 'src/app/models/game.model';
 import StatusBar from '../../models/status-bar.model';
 import { setTitle } from '../../tools/redux/actions/status-bar.actions';
+import { setModal, closeModal } from '../../tools/redux/actions/modal.actions'
 import Ground from 'src/app/models/ground.model';
+import Modal from 'src/app/models/modal.model';
 
 @Component({
   selector: 'app-board-game',
@@ -30,7 +32,7 @@ export class BoardGameComponent implements OnDestroy {
 
   constructor(
     private router: Router,
-    private store: Store<{ statusbar: StatusBar, game: Game }>
+    private store: Store<{ statusbar: StatusBar, game: Game, modal: Modal }>
   ) {
 
     this.store.dispatch(setTitle({ statusbar: { title: "MINEFIELD'S GAME" } }));
@@ -45,7 +47,7 @@ export class BoardGameComponent implements OnDestroy {
 
         this.rows = this.getRows(this.grounds, rowsNCols);
 
-        this.game = {...game};
+        this.game = { ...game };
 
         this.setMinesArounds();
 
@@ -64,9 +66,41 @@ export class BoardGameComponent implements OnDestroy {
 
     ground.known = true;
 
-    if(!ground.isMine){
-      this.game.grounds = (this.game.grounds || 0) - 1;
+    if (!ground.isMine) {
+      this.decreaseEmptyGrounds();
+    } else {
+      this.loseGame();
+    };
+
+  };
+
+  private decreaseEmptyGrounds(): void {
+    this.game.grounds = (this.game.grounds || 0) - 1;
+  };
+
+  private loseGame(): void {
+
+    const lostModal: Modal = {
+      opened: true,
+      hasHeader: true,
+      headerTitle: 'Lost Game',
+      text: 'So bad! Try another game. Good luck!',
+      buttons: [
+        {
+          text: 'Ok',
+          action: () => this.goToHome()
+        }
+      ],
+      actionAfterModalClose: () => this.goToHome()
     }
+
+    this.store.dispatch(setModal({modal: lostModal}));
+  };
+
+  private goToHome(): void {
+
+    this.store.dispatch(closeModal());
+    this.router.navigate(['home']);
 
   }
 

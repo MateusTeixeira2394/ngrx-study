@@ -25,7 +25,13 @@ export class ModalComponent implements OnDestroy {
   }
 
   public closeModal() : void {
+
     this.store.dispatch(closeModal());
+
+    const {actionAfterModalClose: closeModalAction} = this.modal;
+
+    if(closeModalAction) closeModalAction();
+
   }
 
   ngOnDestroy(): void {
