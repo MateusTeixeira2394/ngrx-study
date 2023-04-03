@@ -3,7 +3,7 @@
         <div class="info-container">
             <div class="info-item">
                 <p>Player's name:</p>    
-                <p>{{game.player}}</p>
+                <p>{{game.player | slice:0:20}}</p>
             </div>
             <div class="info-item">
                 <p>Difficulty:</p>
@@ -23,7 +23,7 @@
         <div class="info-container">
             <div class="info-item info-time">
                 <p>Time:</p>
-                <p>{{game.time}}</p>
+                <p>{{game.time*1000 | date:'H:mm:ss':'UTC'}}</p>
             </div>
         </div>
     </div>

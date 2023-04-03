@@ -20,6 +20,7 @@ export class BoardGameComponent implements OnDestroy {
   // Private attributes
   private subscription!: Subscription;
   private grounds: Ground[] = [];
+  private interval!: any;
 
   // Public attributes
   public rows: Ground[][] = [];
@@ -64,10 +65,10 @@ export class BoardGameComponent implements OnDestroy {
 
         this.setMinesArounds();
 
-        console.log('board', this.rows);
+        this.startTimer();
 
       } else {
-        this.router.navigate(['home']);
+        // this.router.navigate(['home']);
       };
 
 
@@ -103,7 +104,14 @@ export class BoardGameComponent implements OnDestroy {
 
   // Privates Methods
 
+  private startTimer(): void {
 
+    this.interval = setInterval(()=>{
+      this.game.time++
+      console.log(this.game.time);
+    }, 1000);
+
+  }
 
   private discoverTheGround(ground: Ground): void {
 
@@ -176,6 +184,9 @@ export class BoardGameComponent implements OnDestroy {
     }
 
     this.store.dispatch(setModal({ modal: lostModal }));
+
+    clearInterval(this.interval);
+
   };
 
   private goToHome(): void {
