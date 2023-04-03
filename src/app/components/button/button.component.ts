@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import Button from 'src/app/models/button.model';
 
 @Component({
@@ -16,11 +16,23 @@ export class ButtonComponent {
   @Output()
   public clickEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(){}
+  constructor() { }
 
   public click(): void {
     this.clickEvent.emit();
   }
+
+  public getClasses(): string[] {
+
+    let classes = ['button'];
+
+    if (this.button.disabled) {
+      classes.push('disabled');
+    };
+
+    return classes;
+
+  };
 
 }
 

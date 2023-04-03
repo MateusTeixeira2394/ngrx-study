@@ -9,4 +9,18 @@
     box-shadow: 5px rgb(185, 184, 184);
     width: 100%;
     margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.button > img {
+    width: 20px;
+    height: fit-content;
+}
+
+.disabled{
+    background-color: white;
+    color: #166737;
 }

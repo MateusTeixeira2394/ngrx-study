@@ -19,13 +19,15 @@ export class GroundComponent {
 
     let classes: string[] = [];
 
-    const { known, isMine, minesAround } = this.ground;
+    const { known, isMine, minesAround, isFlag } = this.ground;
 
     classes.push(known ? 'known' : 'unknown');
 
     if (isMine) classes.push('is-mine');
 
     if (minesAround === 0 && !isMine) classes.push('safezone');
+
+    if(isFlag) classes.push('is-flag');
 
     return classes;
 

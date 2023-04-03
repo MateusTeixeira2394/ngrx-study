@@ -8,6 +8,7 @@ import { setTitle } from '../../tools/redux/actions/status-bar.actions';
 import { setModal, closeModal } from '../../tools/redux/actions/modal.actions'
 import Ground from 'src/app/models/ground.model';
 import Modal from 'src/app/models/modal.model';
+import Button from 'src/app/models/button.model';
 
 @Component({
   selector: 'app-board-game',
@@ -16,11 +17,12 @@ import Modal from 'src/app/models/modal.model';
 })
 export class BoardGameComponent implements OnDestroy {
 
+  // Private attributes
   private subscription!: Subscription;
   private grounds: Ground[] = [];
 
+  // Public attributes
   public rows: Ground[][] = [];
-
   public game: Game = {
     player: '',
     difficulty: '',
@@ -28,7 +30,18 @@ export class BoardGameComponent implements OnDestroy {
     mines: 0,
     time: 0,
     rowsNCols: 0
+  };
+  public stepButton: Button = {
+    text: 'To step',
+    icon: '../../assets/icons/step-icon.png'
+  };
+  public flagButton: Button = {
+    text: 'To flag',
+    disabled: true,
+    icon: '../../assets/icons/flag-icon-green.png'
   }
+
+
 
   constructor(
     private router: Router,
@@ -54,7 +67,7 @@ export class BoardGameComponent implements OnDestroy {
         console.log('board', this.rows);
 
       } else {
-        // this.router.navigate(['home']);
+        this.router.navigate(['home']);
       };
 
 
@@ -62,7 +75,37 @@ export class BoardGameComponent implements OnDestroy {
 
   }
 
-  public discover(ground: Ground): void {
+  // Public methods
+
+  public clickStepButton(): void {
+
+    this.enableStepButton();
+    this.disableFlagButton();
+
+  };
+
+  public clickFlagButton(): void {
+    this.enableFlagButton();
+    this.disableStepButton();
+  };
+
+  public click(ground: Ground): void {
+
+    if (this.flagButton.disabled && !ground.isFlag) {
+      this.discoverTheGround(ground);
+    }
+
+    if (!this.flagButton.disabled) {
+      this.flagTheGround(ground);
+    };
+
+  };
+
+  // Privates Methods
+
+
+
+  private discoverTheGround(ground: Ground): void {
 
     ground.known = true;
 
@@ -73,6 +116,44 @@ export class BoardGameComponent implements OnDestroy {
     };
 
   };
+
+  private flagTheGround(ground: Ground): void {
+
+    if (this.game.mines != undefined){
+
+      if(!ground.isFlag && this.game.mines > 0){
+        this.game.mines--;
+        ground.isFlag = true;
+      }
+      
+      else if(ground.isFlag){
+        this.game.mines++;
+        ground.isFlag = false;
+      };
+
+    };
+
+  };
+
+  private enableStepButton(): void {
+    this.stepButton.disabled = false;
+    this.stepButton.icon = '../../assets/icons/step-icon.png'
+  }
+
+  private disableStepButton(): void {
+    this.stepButton.disabled = true;
+    this.stepButton.icon = '../../assets/icons/step-icon-green.png'
+  }
+
+  private enableFlagButton(): void {
+    this.flagButton.disabled = false;
+    this.flagButton.icon = '../../assets/icons/flag-icon.png'
+  }
+
+  private disableFlagButton(): void {
+    this.flagButton.disabled = true;
+    this.flagButton.icon = '../../assets/icons/flag-icon-green.png'
+  }
 
   private decreaseEmptyGrounds(): void {
     this.game.grounds = (this.game.grounds || 0) - 1;
@@ -94,7 +175,7 @@ export class BoardGameComponent implements OnDestroy {
       actionAfterModalClose: () => this.goToHome()
     }
 
-    this.store.dispatch(setModal({modal: lostModal}));
+    this.store.dispatch(setModal({ modal: lostModal }));
   };
 
   private goToHome(): void {
@@ -210,6 +291,8 @@ export class BoardGameComponent implements OnDestroy {
     return minesAround;
 
   };
+
+  // Component life cycles
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

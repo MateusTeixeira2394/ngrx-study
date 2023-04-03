@@ -28,13 +28,13 @@
         </div>
     </div>
     <div class="buttons">
-        <app-button [button]="{text: 'To step'}"></app-button>
-        <app-button [button]="{text: 'To flag'}"></app-button>
+        <app-button [button]="stepButton" (clickEvent)="clickStepButton()"></app-button>
+        <app-button [button]="flagButton" (clickEvent)="clickFlagButton()"></app-button>
     </div>
     <div class="board">
         <app-board
         [rows]="rows"
-        (discoverEvent)="discover($event)"
+        (discoverEvent)="click($event)"
         ></app-board>
     </div>
 </div>
