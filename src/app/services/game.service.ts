@@ -68,7 +68,7 @@ export default class GameService {
 
         gameAisBetterThanGameB = gameA.time < gameB.time;
 
-        gameAisBetterThanGameB = difficultyA > difficultB;
+        gameAisBetterThanGameB = difficultyA >= difficultB;
 
         return gameAisBetterThanGameB;
 
