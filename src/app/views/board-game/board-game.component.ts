@@ -9,6 +9,7 @@ import { setModal, closeModal } from '../../tools/redux/actions/modal.actions'
 import Ground from 'src/app/models/ground.model';
 import Modal from 'src/app/models/modal.model';
 import Button from 'src/app/models/button.model';
+import GameService from '../../services/game.service';
 
 @Component({
   selector: 'app-board-game',
@@ -46,7 +47,8 @@ export class BoardGameComponent implements OnDestroy {
 
   constructor(
     private router: Router,
-    private store: Store<{ statusbar: StatusBar, game: Game, modal: Modal }>
+    private store: Store<{ statusbar: StatusBar, game: Game, modal: Modal }>,
+    private gameService: GameService
   ) {
 
     this.store.dispatch(setTitle({ statusbar: { title: "MINEFIELD'S GAME" } }));
@@ -106,9 +108,8 @@ export class BoardGameComponent implements OnDestroy {
 
   private startTimer(): void {
 
-    this.interval = setInterval(()=>{
+    this.interval = setInterval(() => {
       this.game.time++
-      console.log(this.game.time);
     }, 1000);
 
   }
@@ -127,14 +128,14 @@ export class BoardGameComponent implements OnDestroy {
 
   private flagTheGround(ground: Ground): void {
 
-    if (this.game.mines != undefined){
+    if (this.game.mines != undefined) {
 
-      if(!ground.isFlag && this.game.mines > 0){
+      if (!ground.isFlag && this.game.mines > 0) {
         this.game.mines--;
         ground.isFlag = true;
       }
-      
-      else if(ground.isFlag){
+
+      else if (ground.isFlag) {
         this.game.mines++;
         ground.isFlag = false;
       };
@@ -165,7 +166,36 @@ export class BoardGameComponent implements OnDestroy {
 
   private decreaseEmptyGrounds(): void {
     this.game.grounds = (this.game.grounds || 0) - 1;
+
+    if (this.game.grounds === 0) {
+      this.winTheGame();
+    };
+
   };
+
+  private winTheGame(): void {
+
+    const wonModal: Modal = {
+      opened: true,
+      hasHeader: true,
+      headerTitle: "Congratulations!",
+      text: "congratulations! Don't forget to check the ranked list, maybe you are the number 1!",
+      buttons: [
+        {
+          text: 'Ok',
+          action: () => this.goToHome()
+        }
+      ],
+      actionAfterModalClose: () => this.goToHome()
+    };
+
+    this.gameService.saveGame(this.game);
+
+    clearInterval(this.interval);
+
+    this.store.dispatch(setModal({ modal: wonModal }));
+
+  }
 
   private loseGame(): void {
 

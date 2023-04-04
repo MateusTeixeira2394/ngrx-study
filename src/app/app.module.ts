@@ -21,6 +21,9 @@ import { ButtonComponent } from './components/button/button.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { BoardGameComponent } from './views/board-game/board-game.component';
 
+// Services imports
+import GameService from './services/game.service';
+
 
 
 @NgModule({
@@ -45,7 +48,7 @@ import { BoardGameComponent } from './views/board-game/board-game.component';
     }),
     FormsModule
   ],
-  providers: [],
+  providers: [GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
