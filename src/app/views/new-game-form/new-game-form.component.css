@@ -1,6 +1,10 @@
 .new-game-form{
     margin-top: 30px;
     padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 85vh;
 }
 
 .field-container{
