@@ -22,6 +22,10 @@ export class HomeComponent {
 
   public goToNewGame(): void {
     this.router.navigate(['new-game']);
-  }
+  };
+
+  public goToRankeds(): void {
+    this.router.navigate(['rankeds']);
+  };
 
 }

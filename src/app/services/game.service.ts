@@ -32,29 +32,45 @@ export default class GameService {
         let indexB: number = 0;
         let response: Game[] = [];
 
-        while(
+        while (
             indexA < arrA.length &&
             indexB < arrB.length
-        ){
+        ) {
 
-            if(arrA[indexA].time < arrB[indexB].time){
+            if (this.isBetterThan(arrA[indexA], arrB[indexB])) {
                 response.push(arrA[indexA]);
                 indexA++;
             } else {
                 response.push(arrB[indexB]);
                 indexB++;
-            }
+            };
 
         };
 
 
-        if(indexB >= arrB.length){
+        if (indexB >= arrB.length) {
             response = [...response, ...arrA.slice(indexA, arrA.length)];
         } else {
             response = [...response, ...arrB.slice(indexB, arrB.length)];
         }
 
         return response;
+
+    };
+
+    private isBetterThan(gameA: Game, gameB: Game): boolean {
+
+        const map: Map<string, number> = new Map([['easy', 0], ['normal', 1], ['hard', 2]]);
+        const difficultyA: number = map.get(gameA.difficulty) || 0;
+        const difficultB: number = map.get(gameB.difficulty) || 0;
+
+        let gameAisBetterThanGameB: boolean = true;
+
+        gameAisBetterThanGameB = gameA.time < gameB.time;
+
+        gameAisBetterThanGameB = difficultyA > difficultB;
+
+        return gameAisBetterThanGameB;
 
     };
 

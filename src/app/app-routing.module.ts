@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { NewGameFormComponent } from './views/new-game-form/new-game-form.component';
 import { BoardGameComponent } from './views/board-game/board-game.component';
+import { RankedsComponent } from './views/rankeds/rankeds.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'board-game',
     component: BoardGameComponent
+  },
+  {
+    path: 'rankeds',
+    component: RankedsComponent
   },
   {
     path: '**',

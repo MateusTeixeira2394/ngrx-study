@@ -1,0 +1,20 @@
+<div class="rankeds-container">
+
+    <div class="card-ranked-container">
+        <div class="card-ranked" *ngFor="let game of games; index as i;">
+            <div class="card-ranked-item">
+                <p class="position">#{{i+1}}</p>
+            </div>
+            <div class="card-ranked-item">
+                <p class="player-name">{{game.player | slice:0:20}}</p>
+                <p class="difficulty">{{game.difficulty}}</p>
+            </div>
+            <div class="card-ranked-item">
+                <p class="time">{{game.time*1000 | date:'H:mm:ss':'UTC'}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <app-button class="button" [button]="{text: 'Back'}" (clickEvent)="goToHome()"></app-button>
+</div>
