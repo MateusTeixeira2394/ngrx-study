@@ -35,3 +35,9 @@
 .card-ranked>:nth-child(2){
     flex-grow: 1;
 }
+
+.games-empty-text{
+    text-align: center;
+    color: grey;
+    margin: 30vh auto;
+}
