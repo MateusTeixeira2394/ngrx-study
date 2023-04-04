@@ -24,6 +24,7 @@ import { BoardGameComponent } from './views/board-game/board-game.component';
 // Services imports
 import GameService from './services/game.service';
 import { RankedsComponent } from './views/rankeds/rankeds.component';
+import { TutorialComponent } from './views/tutorial/tutorial.component';
 
 
 
@@ -38,7 +39,8 @@ import { RankedsComponent } from './views/rankeds/rankeds.component';
     ButtonComponent,
     ModalComponent,
     BoardGameComponent,
-    RankedsComponent
+    RankedsComponent,
+    TutorialComponent
   ],
   imports: [
     BrowserModule,

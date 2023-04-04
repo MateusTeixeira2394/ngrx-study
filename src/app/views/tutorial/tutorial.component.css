@@ -1,0 +1,26 @@
+.tutorial-container{
+    margin-top: 60px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #4d4d4d;
+}
+
+.tutorial-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tutorial-item>img{
+    width: 50vw;
+    height: fit-content;
+}
+
+.tutorial-container>app-button{
+    width: 100%;
+}

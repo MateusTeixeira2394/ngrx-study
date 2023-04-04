@@ -4,6 +4,7 @@ import { HomeComponent } from './views/home/home.component';
 import { NewGameFormComponent } from './views/new-game-form/new-game-form.component';
 import { BoardGameComponent } from './views/board-game/board-game.component';
 import { RankedsComponent } from './views/rankeds/rankeds.component';
+import { TutorialComponent } from './views/tutorial/tutorial.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'rankeds',
     component: RankedsComponent
+  },
+  {
+    path: 'tutorial',
+    component: TutorialComponent
   },
   {
     path: '**',

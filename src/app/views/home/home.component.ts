@@ -28,4 +28,8 @@ export class HomeComponent {
     this.router.navigate(['rankeds']);
   };
 
+  public goToTutorial(): void {
+    this.router.navigate(['tutorial']);
+  };
+
 }
