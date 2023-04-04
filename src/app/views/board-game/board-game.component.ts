@@ -70,7 +70,7 @@ export class BoardGameComponent implements OnDestroy {
         this.startTimer();
 
       } else {
-        // this.router.navigate(['home']);
+        this.router.navigate(['home']);
       };
 
 

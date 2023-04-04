@@ -9,6 +9,8 @@
     background-color: #9e9d9d;
     border-bottom: solid 5px #646464;
     border-right: solid 5px #646464;
+    border-left: solid 5px #c2c2c2;
+    border-top: solid 5px #c2c2c2;
 }
 
 .unknown > .mineAround  {
@@ -19,6 +21,8 @@
     background-color: rgb(224, 224, 224);
     border-top: solid 5px #9d9d9d;
     border-left: solid 5px #9d9d9d;
+    border-bottom: solid 5px #dbdbdb;
+    border-right: solid 5px #dbdbdb;
 }
 
 .mineAround{
