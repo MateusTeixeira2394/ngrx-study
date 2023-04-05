@@ -35,12 +35,12 @@ export class BoardGameComponent implements OnDestroy {
   };
   public stepButton: Button = {
     text: 'To step',
-    icon: '../../assets/icons/step-icon.png'
+    icon: 'assets/icons/step-icon.png'
   };
   public flagButton: Button = {
     text: 'To flag',
     disabled: true,
-    icon: '../../assets/icons/flag-icon-green.png'
+    icon: 'assets/icons/flag-icon-green.png'
   }
 
 
@@ -146,22 +146,22 @@ export class BoardGameComponent implements OnDestroy {
 
   private enableStepButton(): void {
     this.stepButton.disabled = false;
-    this.stepButton.icon = '../../assets/icons/step-icon.png'
+    this.stepButton.icon = 'assets/icons/step-icon.png'
   }
 
   private disableStepButton(): void {
     this.stepButton.disabled = true;
-    this.stepButton.icon = '../../assets/icons/step-icon-green.png'
+    this.stepButton.icon = 'assets/icons/step-icon-green.png'
   }
 
   private enableFlagButton(): void {
     this.flagButton.disabled = false;
-    this.flagButton.icon = '../../assets/icons/flag-icon.png'
+    this.flagButton.icon = 'assets/icons/flag-icon.png'
   }
 
   private disableFlagButton(): void {
     this.flagButton.disabled = true;
-    this.flagButton.icon = '../../assets/icons/flag-icon-green.png'
+    this.flagButton.icon = 'assets/icons/flag-icon-green.png'
   }
 
   private decreaseEmptyGrounds(): void {
