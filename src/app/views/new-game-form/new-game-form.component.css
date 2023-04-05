@@ -35,3 +35,14 @@
   .erro-texto{
     color: red;
   }
+
+  @media screen and (min-width: 640px) {
+    
+  }
+
+  @media screen and (min-width: 1280px) {
+    .new-game-form{
+        margin-top: 30px;
+        padding: 30px 30vw;
+    }
+  }

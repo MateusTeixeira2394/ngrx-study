@@ -40,9 +40,18 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    padding: 0px 10px;
+    padding: 0px 30px;
 }
 
 .buttons > app-button {
     width: 100%;
+}
+
+@media screen and (min-width: 1280px) {
+
+    .info,
+    .buttons{
+        padding:  0px 30vw;
+    }
+
 }

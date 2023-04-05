@@ -41,3 +41,17 @@
     color: grey;
     margin: 30vh auto;
 }
+
+
+@media screen and (min-width: 1080px) {
+
+    .rankeds-container{
+        padding: 0px 30vw;
+    }
+
+    .card-ranked-container {
+        height: 80vh;
+        margin-top: 80px;
+    }
+
+}
