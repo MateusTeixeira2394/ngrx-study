@@ -3,7 +3,7 @@ import Game from 'src/app/models/game.model';
 import {setGame} from '../actions/game.actions';
 
 export const titleInitialState: Game = {
-    difficulty: '',
+    difficulty: 'easy',
     grounds: 0,
     mines: 0,
     player: '',

@@ -27,7 +27,7 @@ export class BoardGameComponent implements OnDestroy {
   public rows: Ground[][] = [];
   public game: Game = {
     player: '',
-    difficulty: '',
+    difficulty: 'easy',
     grounds: 0,
     mines: 0,
     time: 0,

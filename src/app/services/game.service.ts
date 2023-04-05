@@ -1,4 +1,4 @@
-import Game from '../models/game.model';
+import Game, { DifficultyType } from '../models/game.model';
 export default class GameService {
 
     private readonly RANKING_GAME_KEY: string = 'ranking-game';
@@ -60,17 +60,20 @@ export default class GameService {
 
     private isBetterThan(gameA: Game, gameB: Game): boolean {
 
-        const map: Map<string, number> = new Map([['easy', 0], ['normal', 1], ['hard', 2]]);
+        const map: Map<DifficultyType, number> = new Map([['easy', 0], ['normal', 1], ['hard', 2]]);
         const difficultyA: number = map.get(gameA.difficulty) || 0;
         const difficultB: number = map.get(gameB.difficulty) || 0;
 
-        let gameAisBetterThanGameB: boolean = true;
+        if(difficultyA > difficultB){
+            return true;
 
-        gameAisBetterThanGameB = gameA.time < gameB.time;
+        } else if(difficultyA < difficultB){
+            return false;
 
-        gameAisBetterThanGameB = difficultyA >= difficultB;
+        } else {
 
-        return gameAisBetterThanGameB;
+            return gameA.time < gameB.time;
+        };
 
     };
 
