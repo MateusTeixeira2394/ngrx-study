@@ -83,7 +83,9 @@ export class NewGameFormComponent {
     return {
       player: name?.value || '',
       difficulty: difficulty?.value || '',
-      time: 0
+      time: 0,
+      mines: 0,
+      rowsNCols: 0
     }
 
   };

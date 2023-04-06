@@ -7,7 +7,8 @@ export const titleInitialState: Game = {
     grounds: 0,
     mines: 0,
     player: '',
-    time: 0
+    time: 0,
+    rowsNCols: 0
 }
 
 export const gameReducer = createReducer<Game>(

@@ -9,12 +9,16 @@ describe(GameService.name, () => {
         {
             player: 'A',
             difficulty: 'normal',
-            time: 1
+            time: 1,
+            mines: 0,
+            rowsNCols: 0
         },
         {
             player: 'B',
             difficulty: 'easy',
-            time: 2
+            time: 2,
+            mines: 0,
+            rowsNCols: 0
         }
     ];
 
@@ -31,17 +35,23 @@ describe(GameService.name, () => {
             {
                 player: 'A',
                 difficulty: 'easy',
-                time: 1
+                time: 1,
+                mines: 0,
+                rowsNCols: 0
             },
             {
                 player: 'B',
                 difficulty: 'easy',
-                time: 5
+                time: 5,
+                mines: 0,
+                rowsNCols: 0
             },
             {
                 player: 'C',
                 difficulty: 'easy',
-                time: 7
+                time: 7,
+                mines: 0,
+                rowsNCols: 0
             }
         ];
 
@@ -51,7 +61,9 @@ describe(GameService.name, () => {
                 {
                     player: 'D',
                     difficulty: 'easy',
-                    time: 2
+                    time: 2,
+                    mines: 0,
+                    rowsNCols: 0
                 }
             ];
 
@@ -69,7 +81,9 @@ describe(GameService.name, () => {
                 {
                     player: 'D',
                     difficulty: 'easy',
-                    time: 9
+                    time: 9,
+                    mines: 0,
+                    rowsNCols: 0
                 }
             ];
 
@@ -87,7 +101,9 @@ describe(GameService.name, () => {
                 {
                     player: 'D',
                     difficulty: 'normal',
-                    time: 9
+                    time: 9,
+                    mines: 0,
+                    rowsNCols: 0
                 }
             ];
 
@@ -105,11 +121,15 @@ describe(GameService.name, () => {
                 {
                     player: 'D',
                     difficulty: 'hard',
-                    time: 12
+                    time: 12,
+                    mines: 0,
+                    rowsNCols: 0
                 }, {
                     player: 'E',
                     difficulty: 'normal',
-                    time: 10
+                    time: 10,
+                    mines: 0,
+                    rowsNCols: 0
                 }
             ];
 
@@ -157,7 +177,9 @@ describe(GameService.name, () => {
         const game: Game = {
             player: 'A',
             difficulty: 'easy',
-            time: 1
+            time: 1,
+            mines: 0,
+            rowsNCols: 0
         }
 
         it('Should call the setItem method of localstorage', () => {
