@@ -29,7 +29,7 @@ export class ModalComponent implements OnDestroy {
     this.store.dispatch(closeModal());
 
     const {actionAfterModalClose: closeModalAction} = this.modal;
-
+    
     if(closeModalAction) closeModalAction();
 
   }
