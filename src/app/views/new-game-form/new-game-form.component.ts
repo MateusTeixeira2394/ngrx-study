@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import Modal from 'src/app/models/modal.model';
@@ -17,9 +17,9 @@ import { setGame } from 'src/app/tools/redux/actions/game.actions';
   templateUrl: './new-game-form.component.html',
   styleUrls: ['./new-game-form.component.css']
 })
-export class NewGameFormComponent {
+export class NewGameFormComponent implements OnInit{
 
-  private form!: NgForm;
+  public form!: FormGroup;
 
   private readonly modal: Modal = {
     opened: true,
@@ -41,22 +41,35 @@ export class NewGameFormComponent {
   constructor(
     private router: Router,
     private store: Store<{ statusbar: StatusBar, modal: Modal, game: Game }>,
+    private fb: FormBuilder
   ) {
     this.store.dispatch(setTitle({ statusbar: { title: 'New game' } }));
+  }
+  
+  ngOnInit(): void {
+    
+    this.form = this.fb.group({
+      name: ['',[
+        Validators.required,
+        Validators.minLength(3)
+      ]],
+      difficulty: ['',[
+        Validators.required
+      ]]
+    });
+
   };
 
   public goToHome(): void {
     this.router.navigate(['home']);
   }
 
-  public submitForm(form: NgForm): void {
+  public submitForm(): void {
 
-    if (form.valid) {
-      this.form = form;
+    if (this.form.valid) {
       this.store.dispatch(setModal({ modal: this.modal }));
     } else {
-
-      if (form.controls['name']?.errors) {
+      if (this.form.controls['name']?.errors) {
         document.getElementById('input-name')?.focus();
       };
 

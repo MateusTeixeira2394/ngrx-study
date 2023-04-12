@@ -1,22 +1,22 @@
-<form class="new-game-form" id="new-game-form" #form="ngForm" (ngSubmit)="submitForm(form)">
+<form class="new-game-form" id="new-game-form" [formGroup]="form" (ngSubmit)="submitForm()">
   
   <div class="fields">
     <div class="field-container">
       <label for="name" label="name-label">Name*</label>
-      <input type="text" class="input-field" id="input-name" ngModel #name="ngModel" required minlength="3" name="name"
-        placeholder="Type your name" />
+      <input type="text" class="input-field" id="input-name" name="name"
+        placeholder="Type your name" formControlName="name" />
     </div>
 
-    <div class="name-errors-texts" *ngIf="name?.touched || name?.dirty">
-      <span class="erro-texto" *ngIf="name?.errors?.
+    <div class="name-errors-texts" *ngIf="form.controls['name']?.touched || form.controls['name']?.dirty">
+      <span class="erro-texto" *ngIf="form.controls['name']?.errors?.
     ['required']">Required Field.</span>
-      <span class="erro-texto" *ngIf="name?.errors?.
+      <span class="erro-texto" *ngIf="form.controls['name']?.errors?.
     ['minlength']">Your name must have more than 3 characters at least</span>
     </div>
 
     <div class="field-container">
       <label for="difficulty" label="difficulty-label">Difficulty*</label>
-      <select name="difficulty" id="difficulty-select" ngModel #difficulty required class="input-field">
+      <select name="difficulty" id="difficulty-select" class="input-field" formControlName="difficulty">
         <option value="" selected disabled>Choose the game's difficulty</option>
         <option value="easy">Easy</option>
         <option value="normal">Normal</option>
@@ -31,7 +31,7 @@
   </div>
 
   <div class="buttons">
-    <app-button [button]="{text: 'Start'}" (click)="submitForm(form)"></app-button>
+    <app-button [button]="{text: 'Start'}" (click)="submitForm()"></app-button>
     <app-button [button]="{text: 'Back'}" (click)="goToHome()"></app-button>
   </div>
 

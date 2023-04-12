@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 // Redux imports
 import { statusBarReducer } from './tools/redux/reducers/status-bar.reducer';
@@ -50,7 +50,8 @@ import { TutorialComponent } from './views/tutorial/tutorial.component';
       modal: modalReducer,
       game: gameReducer
     }),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [GameService],
   bootstrap: [AppComponent]
