@@ -1,14 +1,14 @@
 import { EASY, HARD, NORMAL } from 'src/app/models/game.model';
 import Difficulty from '../../models/difficulty.model';
 
-export default function difficultyStrategy(difficulty: string): Difficulty | undefined {
+export const EASY_MINES: number = 10;
+export const EASY_ROWS_N_COLS: number = 8;
+export const NORMAL_MINES: number = 20;
+export const NORMAL_ROWS_N_COLS: number = 12;
+export const HARD_MINES: number = 30;
+export const HARD_ROWS_N_COLS: number = 16;
 
-    const EASY_MINES: number = 10;
-    const EASY_ROWS_N_COLS: number = 8;
-    const NORMAL_MINES: number = 20;
-    const NORMAL_ROWS_N_COLS: number = 12;
-    const HARD_MINES: number = 30;
-    const HARD_ROWS_N_COLS: number = 16;
+export default function difficultyStrategy(difficulty: string): Difficulty | undefined {
 
     let map: Map<string, Difficulty> = new Map();
 

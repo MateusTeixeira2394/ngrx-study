@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -10,13 +10,14 @@ import Ground from 'src/app/models/ground.model';
 import Modal from 'src/app/models/modal.model';
 import Button from 'src/app/models/button.model';
 import GameService from '../../services/game.service';
+import { FLAG_BUTTON_DISABLED_ICON, FLAG_BUTTON_ENABLED_ICON, FLAG_BUTTON_ICON, FLAG_BUTTON_TEXT, GAME_BOARD_HEADER_TITLE, LOST_MODAL_BUTTONS_1_TEXT, LOST_MODAL_HEADER_TITLE, LOST_MODAL_TEXT, STEP_BUTTON_DISABLED_ICON, STEP_BUTTON_ENABLED_ICON, STEP_BUTTON_ICON, STEP_BUTTON_TEXT, WON_MODAL_BUTTONS_1_TEXT, WON_MODAL_HEADER_TITLE, WON_MODAL_TEXT } from './board-game.constants';
 
 @Component({
   selector: 'app-board-game',
   templateUrl: './board-game.component.html',
   styleUrls: ['./board-game.component.css']
 })
-export class BoardGameComponent implements OnDestroy {
+export class BoardGameComponent implements OnInit, OnDestroy {
 
   // Private attributes
   private subscription!: Subscription;
@@ -34,13 +35,13 @@ export class BoardGameComponent implements OnDestroy {
     rowsNCols: 0
   };
   public stepButton: Button = {
-    text: 'To step',
-    icon: 'assets/icons/step-icon.png'
+    text: STEP_BUTTON_TEXT,
+    icon: STEP_BUTTON_ICON
   };
   public flagButton: Button = {
-    text: 'To flag',
+    text: FLAG_BUTTON_TEXT,
     disabled: true,
-    icon: 'assets/icons/flag-icon-green.png'
+    icon: FLAG_BUTTON_ICON
   }
 
 
@@ -51,32 +52,9 @@ export class BoardGameComponent implements OnDestroy {
     private gameService: GameService
   ) {
 
-    this.store.dispatch(setTitle({ statusbar: { title: "MINEFIELD'S GAME" } }));
+    this.store.dispatch(setTitle({ statusbar: { title: GAME_BOARD_HEADER_TITLE } }));
 
-    this.subscription = this.store.select('game').subscribe(game => {
-
-      const { mines, rowsNCols } = game;
-
-      if (mines && rowsNCols) {
-
-        this.grounds = this.getGrounds(rowsNCols, mines);
-
-        this.rows = this.getRows(this.grounds, rowsNCols);
-
-        this.game = { ...game };
-
-        this.setMinesArounds();
-
-        this.startTimer();
-
-      } else {
-        this.router.navigate(['home']);
-      };
-
-
-    });
-
-  }
+  };
 
   // Public methods
 
@@ -146,22 +124,22 @@ export class BoardGameComponent implements OnDestroy {
 
   private enableStepButton(): void {
     this.stepButton.disabled = false;
-    this.stepButton.icon = 'assets/icons/step-icon.png'
+    this.stepButton.icon = STEP_BUTTON_ENABLED_ICON;
   }
 
   private disableStepButton(): void {
     this.stepButton.disabled = true;
-    this.stepButton.icon = 'assets/icons/step-icon-green.png'
+    this.stepButton.icon = STEP_BUTTON_DISABLED_ICON;
   }
 
   private enableFlagButton(): void {
     this.flagButton.disabled = false;
-    this.flagButton.icon = 'assets/icons/flag-icon.png'
+    this.flagButton.icon = FLAG_BUTTON_ENABLED_ICON;
   }
 
   private disableFlagButton(): void {
     this.flagButton.disabled = true;
-    this.flagButton.icon = 'assets/icons/flag-icon-green.png'
+    this.flagButton.icon = FLAG_BUTTON_DISABLED_ICON;
   }
 
   private decreaseEmptyGrounds(): void {
@@ -178,11 +156,11 @@ export class BoardGameComponent implements OnDestroy {
     const wonModal: Modal = {
       opened: true,
       hasHeader: true,
-      headerTitle: "Congratulations!",
-      text: "congratulations! Don't forget to check the ranked list, maybe you are the number 1!",
+      headerTitle: WON_MODAL_HEADER_TITLE,
+      text: WON_MODAL_TEXT,
       buttons: [
         {
-          text: 'Ok',
+          text: WON_MODAL_BUTTONS_1_TEXT,
           action: () => this.goToHome()
         }
       ],
@@ -202,11 +180,11 @@ export class BoardGameComponent implements OnDestroy {
     const lostModal: Modal = {
       opened: true,
       hasHeader: true,
-      headerTitle: 'Lost Game',
-      text: 'So bad! Try another game. Good luck!',
+      headerTitle: LOST_MODAL_HEADER_TITLE,
+      text: LOST_MODAL_TEXT,
       buttons: [
         {
-          text: 'Ok',
+          text: LOST_MODAL_BUTTONS_1_TEXT,
           action: () => this.goToHome()
         }
       ],
@@ -334,6 +312,32 @@ export class BoardGameComponent implements OnDestroy {
   };
 
   // Component life cycles
+
+  ngOnInit(): void {
+
+    this.subscription = this.store.select('game').subscribe(game => {
+
+      if (game?.mines && game?.rowsNCols) {
+
+        const { mines, rowsNCols } = game;
+
+        this.grounds = this.getGrounds(rowsNCols, mines);
+
+        this.rows = this.getRows(this.grounds, rowsNCols);
+
+        this.game = { ...game };
+
+        this.setMinesArounds();
+
+        this.startTimer();
+
+      } else {
+        this.router.navigate(['home']);
+      };
+
+    });
+
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
