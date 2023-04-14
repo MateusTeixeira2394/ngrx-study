@@ -12,6 +12,7 @@ import Button from 'src/app/models/button.model';
 import GameService from '../../services/game.service';
 import { FLAG_BUTTON_DISABLED_ICON, FLAG_BUTTON_ENABLED_ICON, FLAG_BUTTON_ICON, FLAG_BUTTON_TEXT, GAME_BOARD_HEADER_TITLE, LOST_MODAL_BUTTONS_1_TEXT, LOST_MODAL_HEADER_TITLE, LOST_MODAL_TEXT, STEP_BUTTON_DISABLED_ICON, STEP_BUTTON_ENABLED_ICON, STEP_BUTTON_ICON, STEP_BUTTON_TEXT, WON_MODAL_BUTTONS_1_TEXT, WON_MODAL_HEADER_TITLE, WON_MODAL_TEXT } from './board-game.constants';
 import { ROUTE_HOME } from 'src/app/app.constants';
+import { FlagEvent } from 'src/app/models/flagEvent.model';
 
 @Component({
   selector: 'app-board-game',
@@ -80,6 +81,14 @@ export class BoardGameComponent implements OnInit, OnDestroy {
     if (!this.flagButton.disabled) {
       this.flagTheGround(ground);
     };
+
+  };
+
+  public flagClick(flagEvent: FlagEvent): void {
+
+    flagEvent.event.preventDefault();
+
+    this.flagTheGround(flagEvent.ground);
 
   };
 

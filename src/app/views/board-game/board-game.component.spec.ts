@@ -17,6 +17,7 @@ import { FLAG_BUTTON_DISABLED_ICON, FLAG_BUTTON_ENABLED_ICON, LOST_MODAL_HEADER_
 import Game from 'src/app/models/game.model';
 import { gameReducer } from 'src/app/tools/redux/reducers/game.reducer';
 import { GroundComponent } from 'src/app/components/ground/ground.component';
+import { FlagEvent } from 'src/app/models/flagEvent.model';
 
 describe(BoardGameComponent.name, () => {
 
@@ -286,7 +287,7 @@ describe(BoardGameComponent.name, () => {
 
   });
 
-  describe(BoardGameComponent.prototype.clickStepButton.name, ()=>{
+  describe(BoardGameComponent.prototype.clickStepButton.name, () => {
 
     it('should disable the flag button and enable the step button', () => {
 
@@ -297,6 +298,64 @@ describe(BoardGameComponent.name, () => {
 
       expect(component.stepButton.disabled).toBeFalse();
       expect(component.stepButton.icon).toBe(STEP_BUTTON_ENABLED_ICON);
+
+    });
+
+  });
+
+  describe(BoardGameComponent.prototype.flagClick.name, () => {
+
+    it("should flag the ground when it is clicked and it hasn't already been flagged", () => {
+
+      let ground: Ground = {
+        isMine: false,
+        known: false,
+        minesAround: 1,
+        isFlag: false
+      };
+
+      let flagEvent: FlagEvent = {
+        event: new Event('contextmenu'),
+        ground
+      };
+
+      component.flagButton.disabled = true;
+
+      const minesQt: number = component.game.mines - 1;
+
+      fixture.detectChanges();
+
+      component.flagClick(flagEvent);
+
+      expect(ground.isFlag).toBeTrue();
+      expect(component.game.mines).toEqual(minesQt);
+
+    });
+
+    it("should unflag the ground when it is clicked and it has already been flagged", () => {
+
+      let ground: Ground = {
+        isMine: false,
+        known: false,
+        minesAround: 1,
+        isFlag: true
+      };
+
+      let flagEvent: FlagEvent = {
+        event: new Event('contextmenu'),
+        ground
+      };
+
+      component.flagButton.disabled = true;
+
+      const minesQt: number = component.game.mines + 1;
+
+      fixture.detectChanges();
+
+      component.flagClick(flagEvent);
+
+      expect(ground.isFlag).toBeFalse();
+      expect(component.game.mines).toEqual(minesQt);
 
     });
 
