@@ -42,7 +42,7 @@ describe(HomeComponent.name, () => {
 
   });
 
-  it(`should trigger the router's navigate method when the ${HomeComponent.prototype.goToTutorial} method is called`, () => {
+  it(`should trigger the router's navigate method when the ${HomeComponent.prototype.goToTutorial.name} method is called`, () => {
 
     const spy: jasmine.Spy = spyOn(router,"navigate");
 
@@ -52,7 +52,7 @@ describe(HomeComponent.name, () => {
 
   });
 
-  it(`should trigger the router's navigate method when the ${HomeComponent.prototype.goToRankeds} method is called`, () => {
+  it(`should trigger the router's navigate method when the ${HomeComponent.prototype.goToRankeds.name} method is called`, () => {
 
     const spy: jasmine.Spy = spyOn(router,"navigate");
 
@@ -62,7 +62,7 @@ describe(HomeComponent.name, () => {
 
   });
 
-  it(`should trigger the router's navigate method when the ${HomeComponent.prototype.goToNewGame} method is called`, () => {
+  it(`should trigger the router's navigate method when the ${HomeComponent.prototype.goToNewGame.name} method is called`, () => {
 
     const spy: jasmine.Spy = spyOn(router,"navigate");
 

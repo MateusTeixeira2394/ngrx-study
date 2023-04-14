@@ -34,7 +34,7 @@ describe(TutorialComponent.name, () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should trigger the router navigate when the ${TutorialComponent.prototype.goToHome} method is called.`, ()=>{
+  it(`should trigger the router navigate when the ${TutorialComponent.prototype.goToHome.name} method is called.`, ()=>{
 
     const spy: jasmine.Spy = spyOn(router,"navigate");
 
