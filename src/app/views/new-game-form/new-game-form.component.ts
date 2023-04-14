@@ -11,6 +11,8 @@ import Game from 'src/app/models/game.model';
 import difficultyStrategy from 'src/app/tools/strategies/difficulty.strategy';
 import Difficulty from '../../models/difficulty.model';
 import { setGame } from 'src/app/tools/redux/actions/game.actions';
+import { NEW_GAME_FORM_HEADER_TITLE } from './new-game-form.constants';
+import { ROUTE_BOARD_GAME, ROUTE_HOME } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-new-game-form',
@@ -43,7 +45,7 @@ export class NewGameFormComponent implements OnInit{
     private store: Store<{ statusbar: StatusBar, modal: Modal, game: Game }>,
     private fb: FormBuilder
   ) {
-    this.store.dispatch(setTitle({ statusbar: { title: 'New game' } }));
+    this.store.dispatch(setTitle({ statusbar: { title: NEW_GAME_FORM_HEADER_TITLE } }));
   }
   
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class NewGameFormComponent implements OnInit{
   };
 
   public goToHome(): void {
-    this.router.navigate(['home']);
+    this.router.navigate([ROUTE_HOME]);
   }
 
   public submitForm(): void {
@@ -85,7 +87,7 @@ export class NewGameFormComponent implements OnInit{
 
     this.store.dispatch(closeModal());
 
-    this.router.navigate(['board-game']);
+    this.router.navigate([ROUTE_BOARD_GAME]);
 
   };
 

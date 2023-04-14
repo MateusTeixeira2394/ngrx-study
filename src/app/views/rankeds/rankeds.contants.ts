@@ -1,0 +1,1 @@
+export const RANKEDS_HEADER_TITLE: string = 'Rankeds';

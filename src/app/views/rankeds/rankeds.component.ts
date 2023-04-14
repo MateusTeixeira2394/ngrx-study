@@ -5,6 +5,8 @@ import {setTitle} from '../../tools/redux/actions/status-bar.actions'
 import Game from 'src/app/models/game.model';
 import GameService from 'src/app/services/game.service';
 import { Router } from '@angular/router';
+import { RANKEDS_HEADER_TITLE } from './rankeds.contants';
+import { ROUTE_HOME } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-rankeds',
@@ -21,14 +23,14 @@ export class RankedsComponent {
     private router: Router
   ){
 
-    store.dispatch(setTitle({statusbar: {title: 'Rankeds'}}));
+    store.dispatch(setTitle({statusbar: {title: RANKEDS_HEADER_TITLE}}));
 
     this.games = gameService.getRankedGame();
 
   };
 
   public goToHome(): void {
-    this.router.navigate(['home']);
+    this.router.navigate([ROUTE_HOME]);
   }
 
 }

@@ -1,0 +1,1 @@
+export const NEW_GAME_FORM_HEADER_TITLE: string = 'New game';

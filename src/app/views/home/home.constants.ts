@@ -1,0 +1,1 @@
+export const HOME_HEADER_TITLE: string = 'Home';
