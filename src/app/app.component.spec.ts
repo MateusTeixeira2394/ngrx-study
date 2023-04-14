@@ -1,17 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { StatusBarComponent } from './components/status-bar/status-bar.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { StoreModule } from '@ngrx/store';
+import { statusBarReducer } from './tools/redux/reducers/status-bar.reducer';
+import { modalReducer } from './tools/redux/reducers/modal.reducer';
 
 describe('AppComponent', () => {
+
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        StoreModule.forRoot({
+          statusbar: statusBarReducer,
+          modal: modalReducer
+        })
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        StatusBarComponent,
+        ModalComponent
       ],
     }).compileComponents();
+
   });
 
   it('should create the app', () => {
@@ -20,16 +34,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ngrx-study'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ngrx-study');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ngrx-study app is running!');
-  });
 });

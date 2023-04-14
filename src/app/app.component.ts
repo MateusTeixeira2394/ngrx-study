@@ -6,7 +6,4 @@ import Ground from './models/ground.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'ngrx-study';
-
-}
+export class AppComponent {}
