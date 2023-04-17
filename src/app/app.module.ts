@@ -25,6 +25,7 @@ import { BoardGameComponent } from './views/board-game/board-game.component';
 import GameService from './services/game.service';
 import { RankedsComponent } from './views/rankeds/rankeds.component';
 import { TutorialComponent } from './views/tutorial/tutorial.component';
+import { LongClickDirective } from './directives/long-click.directive';
 
 
 
@@ -40,7 +41,8 @@ import { TutorialComponent } from './views/tutorial/tutorial.component';
     ModalComponent,
     BoardGameComponent,
     RankedsComponent,
-    TutorialComponent
+    TutorialComponent,
+    LongClickDirective
   ],
   imports: [
     BrowserModule,

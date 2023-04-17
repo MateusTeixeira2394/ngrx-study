@@ -84,6 +84,12 @@ export class BoardGameComponent implements OnInit, OnDestroy {
 
   };
 
+  public longClick(ground: Ground): void {
+
+    this.flagTheGround(ground);
+
+  };
+
   public flagClick(flagEvent: FlagEvent): void {
 
     flagEvent.event.preventDefault();

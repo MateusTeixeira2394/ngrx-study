@@ -1,5 +1,5 @@
 <div class="board-row" *ngFor="let row of rows" >
     <div class="board-item" *ngFor="let ground of row" >
-        <app-ground [ground]="ground" (click)="discover(ground)" (contextmenu)="flag({event: $event, ground})" ></app-ground>
+        <app-ground [ground]="ground" (click)="discover(ground)" (contextmenu)="flag({event: $event, ground})" longClick  (longClickEvent)="longClick(ground)" ></app-ground>
     </div>
 </div>

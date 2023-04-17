@@ -18,12 +18,19 @@ export class BoardComponent {
   @Output()
   public flagEvent: EventEmitter<FlagEvent> = new EventEmitter();
 
+  @Output()
+  public longClickEvent: EventEmitter<Ground> = new EventEmitter();
+
   public discover(ground: Ground): void {
     this.discoverEvent.emit(ground);
   };
 
-  public flag(flagEvent: FlagEvent): void {
-    this.flagEvent.emit(flagEvent);
+  public flag(obj: FlagEvent): void {
+    this.flagEvent.emit(obj);
+  }
+
+  public longClick(ground: Ground): void {
+    this.longClickEvent.emit(ground);
   }
 
 };
