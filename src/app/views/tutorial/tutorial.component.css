@@ -25,6 +25,9 @@
     width: 100%;
 }
 
+.right-click{
+    display: none;
+}
 
 @media screen and (min-width: 510px) {
 
@@ -59,6 +62,18 @@
 
     .tutorial-container{
         padding: 0px 30vw;
+    }
+
+}
+
+@media screen and (min-width: 1080px) {
+
+    .right-click{
+        display: block;
+    }
+
+    .long-click{
+        display: none;
     }
 
 }
